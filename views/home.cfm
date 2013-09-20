@@ -1,7 +1,7 @@
 <div class="row">
 
 <div class="span8">
-  <h1>5th Annual Toys for Shots</h1>
+  <h1>6th Annual Toys for Shots</h1>
 
                 <p><strong>Who:</strong> Everyone is Welcome! <br/>
             <strong>What:</strong> Toys for Shots Fundraiser/Holiday Party<br>

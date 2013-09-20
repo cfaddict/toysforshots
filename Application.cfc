@@ -12,10 +12,19 @@ component extends="coldbox.system.Coldbox" {
 	COLDBOX_CONFIG_FILE = "";
 	COLDBOX_APP_KEY = "";
 
+	// MAC 
+	this.mappings["/toysforshots"] = "/Users/vega/www/toysforshots";
+	this.mappings["/cfformprotect"] = "/Users/vega/www/toysforshots/cfc/com/cfformprotect";
+	this.mappings["/hyrule"] = "/Users/vega/www/hyrule";
+	this.mappings["/hoth"] = "/Users/vega/www/toysforshots/cfc/com/hoth";
+
+	// WINDOWS 
+	/*
 	this.mappings["/toysforshots"] = "c:\www\toysforshots";
 	this.mappings["/cfformprotect"] = "c:\www\toysforshots\cfc\com\cfformprotect";
 	this.mappings["/hyrule"] = "c:\www\hyrule";
-	this.mappings["/hoth"] = "c:\www\toysforshots\cfc\com\hoth";
+	this.mappings["/hoth"] = "c:\www\toysforshots\cfc\com/hoth";
+	*/
 
 	// ORM SETTINGS
 	this.ormEnabled = true;
