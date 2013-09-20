@@ -1,0 +1,96 @@
+/* POST --------------------------------------------------*/
+.post {
+	
+}
+.post-header {
+	border-bottom: 1px dotted #242424;
+	margin:0 0 15px 0;
+}
+.post-header .metadata {
+	margin:0 0 8px 0;
+}
+.post-header .addthis_toolbox {
+	float: right;
+}
+
+.post-title {
+	margin:10px 0 5px 0;
+}
+.post-title a:link, .post-title a:visited {
+	font-family: 'Lobster', arial, serif;
+	font-size:28px;
+	color:#004865;
+	text-decoration:none;
+}
+.post-title a:hover {
+	text-decoration:underline;
+}
+.post-metadata {
+	font-family: 'Droid Sans', arial, serif;
+	background: #17140d;
+	color:#8ab29f;
+	padding:4px;
+	margin:8px 0 8px 0;
+}
+.post-metadata a {color:#8ab29f;}
+
+#main {
+	min-height:2775px;
+}
+
+/* tagcloud --------------------------------------------------*/
+.smallestTag {font-size: 9px;}
+.smallTag {font-size: 11px;}
+.mediumTag {font-size: 13px;}
+.largeTag {font-size: 16px;}
+.largestTag {font-size: 20px;}
+
+/* copyright --------------------------------------------------*/
+.copyright {
+	color:#fff;
+	opacity:0.80;
+}
+.copyright a:link, .copyright a:visited {
+	color:#8ab29f;
+}
+
+.share {
+	float:right;
+}
+
+
+#comments {list-style-type:none;margin:0;padding:0 0 20px 0;}
+.commentHeader {font-size:17px;color:#004865;}
+.commentBody {
+	font-family: "Trebuchet MS", verdana, arial, sans-serif; 
+	font-size: .8em; 
+	color: #000000; 
+	margin-right: 10px;
+	margin-bottom: 40px;
+}
+
+.commentByLine, .tweetbackByLine {
+	font-weight: bold;
+	clear: left;
+}
+
+.comment, .trackback, .tweetback, .commentAlt, .trackbackAlt, .tweetbackAlt {
+	border: 1px solid #999;
+	padding: 10px;
+	margin:10px 0;
+	position:relative;
+
+}
+.commentAlt, .trackbackAlt , .tweetbackAlt{
+background-color:#efefef;
+
+}
+.comment img, .commentAlt img, .tweetback img, .tweetbackAlt img {
+	float:left;
+	position:relative;
+	margin: 0 5px 5px 0;
+	max-width: 48px;
+	max-height: 48px;	
+}
+
+#gads {text-align:center;margin:0 0 10px 0;}

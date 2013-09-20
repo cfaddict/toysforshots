@@ -1,0 +1,94 @@
+body{
+	/*background: #01435b*/;
+	background: #0999ce url('../images/tfsbg_2012.jpg') no-repeat;
+	background-size:100%;
+	color:#000;
+	font-family: 'Droid Sans', sans-serif;
+	font-size:12px;
+	line-height:180%;
+	margin:10px;
+}
+
+h1{font-family: 'Lobster', arial, serif; font-size:32px;color:#005183;margin:20px 0 15px 0;}
+h2{font-size:21px;color:#005183}
+
+p {line-height:180%;}
+a:link,a:visited {color:#186999;text-decoration:underline;}
+a:hover {color:#186999;text-decoration:none;}
+
+ul li {color:#000}
+
+.content-wrapper {
+	background:#fff;
+	padding: 20px;
+	margin: 0 -20px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+
+form {margin:30px 0 0 0;}
+
+#frmContact {
+	width:600px;
+}
+
+a.btn {text-decoration:none;}
+
+
+.required {font-weight:bold;color:red;}
+
+.fright {float:right;padding:0 0 20px 20px;}
+.signature {font-family: 'Dancing Script', cursive;font-size:37px;}
+
+#header {background:#fff url(../images/banner2011.jpg) no-repeat center right;padding:0px 0 0 0;}
+#header .logo {padding:0 0 5px 10px;}
+#footer {text-align:center;padding-top:5px;font-size:1.1em;color:#fff;font-style:italic;}
+#footer a:link,#footer a:visited {color:#fff;}
+
+#navigation {font-family: 'Yanone Kaffeesatz', arial, serif;font-size:23px;background-color:#001448;}
+#navigation ul {margin:0px;padding:0px;float:left;}
+#navigation ul li {display:inline;}
+#navigation ul li a {float: left; text-decoration: none;color: white;padding:5px 22px;background-color:#001448;}
+#navigation ul li a:visited {color:#fff;}
+#navigation ul li a:hover, #navigation ul li .current {color:#fff;background-color:#e31927;}
+
+#twitter-sidebar {margin-top:20px;}
+#twitter-sidebar ul {margin:0px;padding:0px;}
+#twitter-sidebar li {list-style-type:none;margin-bottom:10px;border-bottom:1px solid #eee;}
+#twitter-sidebar h2{font-family: 'Yanone Kaffeesatz', arial, serif;font-size:22px;background:#e31927;color:#fff;padding:0 10px;}
+#twitter-sidebar .date {font-style:italic;font-size:11px;}
+
+#blog-sidebar {margin-top:20px;}
+#blog-sidebar h2{font-family: 'Yanone Kaffeesatz', arial, serif;font-size:22px;background:#e31927;color:#fff;padding:0 10px;}
+
+
+/* HOME PAGE */
+.latest-entry {border-bottom:1px;border-bottom:1px solid #eee;}
+.latest-entry .date {font-style:italic;font-size:11px;}
+
+#gallery {}
+#gallery td {border:none;padding:5px 25px;}
+#gallery .title {font-family: 'Yanone Kaffeesatz', arial, serif;font-size:19px;margin:10px;}
+#gallery a:link, #gallery a:visited {text-decoration:none;}
+
+.gallery-image {padding:10px;}
+
+.more {
+	font-family: 'Yanone Kaffeesatz', arial, serif;font-size:24px;
+	color:#e31927;
+}
+
+
+#flickr_badge_source_txt {padding:0; font: 11px Arial, Helvetica, Sans serif; color:#666666;}
+#flickr_badge_icon {display:block !important; margin:0 !important; border: 1px solid rgb(0, 0, 0) !important;}
+#flickr_icon_td {padding:0 5px 0 0 !important;}
+.flickr_badge_image {text-align:center !important;}
+.flickr_badge_image img {border: 1px solid black !important;}
+#flickr_www {display:block; padding:0 10px 0 10px !important; font: 11px Arial, Helvetica, Sans serif !important; color:#3993ff !important;}
+#flickr_badge_uber_wrapper a:hover,
+#flickr_badge_uber_wrapper a:link,
+#flickr_badge_uber_wrapper a:active,
+#flickr_badge_uber_wrapper a:visited {text-decoration:none !important; background:inherit !important;color:#004865;}
+#flickr_badge_wrapper {}
+#flickr_badge_source {padding:0 !important; font: 11px Arial, Helvetica, Sans serif !important; color:#666666 !important;}
+#flickr_badge_uber_wrapper,#flickr_badge_uber_wrapper td{border:none !important;}

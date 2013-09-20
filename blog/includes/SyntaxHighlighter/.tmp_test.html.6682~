@@ -1,0 +1,327 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>SyntaxHighlighter Build Test Page</title>
+	
+	<link type="text/css" rel="stylesheet" href="styles/shCore.css"/>
+	<link type="text/css" rel="stylesheet" href="styles/shThemeDefault.css"/>
+
+	<script type="text/javascript" src="scripts/shCore.js"></script>
+	<script type="text/javascript" src="scripts/shLegacy.js"></script>
+	<script type="text/javascript" src="scripts/shBrushAS3.js"></script>
+	<script type="text/javascript" src="scripts/shBrushColdFusion.js"></script>	
+	<script type="text/javascript" src="scripts/shBrushCss.js"></script>
+	<script type="text/javascript" src="scripts/shBrushGroovy.js"></script>
+	<script type="text/javascript" src="scripts/shBrushJava.js"></script>
+	<script type="text/javascript" src="scripts/shBrushPlain.js"></script>
+	<script type="text/javascript" src="scripts/shBrushSql.js"></script>
+	<script type="text/javascript" src="scripts/shBrushXml.js"></script>
+	<script type="text/javascript" src="scripts/shBrushMxml.js"></script>
+		
+	<script type="text/javascript">
+		SyntaxHighlighter.config.clipboardSwf = 'scripts/clipboard.swf';
+		SyntaxHighlighter.config.tagName = 'textarea';
+		SyntaxHighlighter.config.bloggerMode = true;		
+		SyntaxHighlighter.all();
+		dp.SyntaxHighlighter.HighlightAll('code');
+	</script>
+</head>
+
+<body >
+<h1>SyntaxHihglighter Test</h1>
+<p>This is a test file to insure that everything is working well.</p>
+
+<textarea name="code" class="brush: coldfusion">
+<!---
+http://www.paypal.com/cgi-bin/webscr?cmd=_ipn-test-about-outside
+https://developer.paypal.com
+--->
+
+<cfset sandboxurl = "https://www.sandbox.paypal.com/cgi-bin/webscr"/>
+<cfset liveurl = "https://www.paypal.com/cgi-bin/webscr"/>
+
+<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" class="yform">
+	[mura]dspInclude('display_objects/dsp_form_protect.cfm')[/mura]
+
+	<input type="hidden" name="cmd" value="_ext-enter">
+	<input type="hidden" name="redirect_cmd" value="_xclick">
+	<input type="hidden" name="business" value="danvega@gmail.com">
+	<input type="hidden" name="item_name" value="LGRC Consumer Payments">
+	<input type="hidden" name="currency_code" value="USD">
+	<input type="hidden" name="amount" value="$1.00">
+	<input type="hidden" name="notify_url" value="http://test.lgrc.us/index.cfm/consumer-payments1/">
+	<input type="hidden" name="return" value="http://test.lgrc.us/index.cfm/consumer-payments1/">
+
+	<div class="type-text">
+		<label for="firstname">First Name <sup title="This field is required.">*</sup></label>
+		<input type="text" size="20" id="firstname" name="firstname" required="true" message="Please enter your first name." />
+	</div>
+	<div class="type-text">
+		<label for="lastname">Last Name <sup title="This field is required.">*</sup></label>
+		<input type="text" size="20" id="lastname" name="lastname" required="true" message="Please enter your last name." />
+	</div>
+	<div class="type-text">
+		<label for="account">Account ##<sup title="This field is required.">*</sup></label>
+		<input type="text" size="20" id="account" name="account" required="true" message="Please enter your account number." />
+	</div>
+	<div class="type-text">
+		<label for="emailaddress">Paypal Email Address<sup title="This field is required.">*</sup></label>
+		<input type="text" size="20" id="emailaddress" name="emailaddress" required="true" message="Please enter your paypal email address." />
+	</div>
+	<div class="type-text">
+		<label for="account">Amount<sup title="This field is required.">*</sup></label>
+		<input type="text" size="20" id="amount" name="amount" required="true" message="Please enter your payment amount." />
+	</div>
+
+	<div align="right"><input type="image" src="http://www.paypal.com/en_US/i/btn/x-click-but01.gif" name="submit" alt="Make payments with PayPal - it's fast, free and secure!"> </div>
+
+</form>
+</textarea>
+
+<br/><br/>
+
+<textarea name="code" class="brush: as3">
+
+package com.rocketfm {
+	
+	import events.DownloadDirectoryEvent;
+	
+	import flash.display.DisplayObject;
+	import flash.events.ContextMenuEvent;
+	import flash.ui.ContextMenu;
+	import flash.ui.ContextMenuItem;
+	
+	import mx.collections.*;
+	import mx.controls.Alert;
+	import mx.controls.treeClasses.*;
+	import mx.core.Application;
+	import mx.managers.PopUpManager;
+	
+	import views.AddDirectory;
+	import views.DeleteDirectory;
+	import views.RenameDirectory;
+	
+    public class CustomTreeItemRenderer extends TreeItemRenderer {
+        
+        private var renameWin:RenameDirectory;
+        private var addWin:AddDirectory;
+        private var delWin:DeleteDirectory;
+        private var baseDir:String;
+        
+        public function CustomTreeItemRenderer() {
+            super();
+			
+			var menu:ContextMenu = new ContextMenu();
+			var add:ContextMenuItem = new ContextMenuItem("Add Folder");
+			var remove:ContextMenuItem = new ContextMenuItem("Remove Folder");
+			var rename:ContextMenuItem = new ContextMenuItem("Rename Folder");
+			var download:ContextMenuItem = new ContextMenuItem("Download Directory");
+			
+			add.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT,addDirectory);
+			remove.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT,removeDirectory);
+			rename.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT,renameDirectory);			
+			download.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT,downloadAll);
+			
+			menu.hideBuiltInItems();
+			menu.customItems.push(add);			
+			menu.customItems.push(remove);
+			menu.customItems.push(rename);
+			menu.customItems.push(download);
+		
+			this.baseDir = Application.application.baseDir;
+			this.contextMenu = menu;
+        }
+        
+		private function addDirectory(event:ContextMenuEvent):void {
+			addWin = new AddDirectory();
+			addWin.dirPath = data.path;
+			addWin.parentPath = data.parent;
+			addWin.item = data;
+			// add window
+	        PopUpManager.addPopUp(addWin,DisplayObject(Application.application),true);
+		}
+		
+		private function removeDirectory(event:ContextMenuEvent):void {
+			if(data.path != baseDir){
+				delWin = new DeleteDirectory();
+				delWin.item = data;
+				// delete window
+		        PopUpManager.addPopUp(delWin,DisplayObject(Application.application),true);
+			} else {
+				Alert.show("You do not have permission to delete the base directory","Remove Error");
+			}
+		}
+		
+		private function renameDirectory(event:ContextMenuEvent):void {
+			if(data.path != baseDir){
+				renameWin = new RenameDirectory();
+				renameWin.item = data;
+				renameWin.oldDirectoryName = data.name;
+				renameWin.parentPath = data.parent;
+				// rename window
+		        PopUpManager.addPopUp(renameWin,DisplayObject(Application.application),true);
+			} else {
+				Alert.show("You do not have permission to rename the base directory","Rename Error");
+			}
+		}
+		
+		private function downloadAll(event:ContextMenuEvent):void {
+			dispatchEvent(new DownloadDirectoryEvent("downloadDirectory",data));
+		} 
+	}
+}
+</textarea>
+
+<br/><br/>
+
+<textarea name="code" class="brush: xml">
+<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" 
+	creationComplete="init()" showCloseButton="true">
+	
+	<mx:Panel id="container" title="{titleBarText}" width="100%" height="100%" titleIcon="@Embed('assets/images/image.png')" backgroundColor="#f2f2f2">
+	
+		<mx:HBox width="100%" backgroundAlpha="0.0">
+			<mx:Button id="btnBrowse" label="Browse" click="onBrowse(event)" icon="@Embed('assets/images/add.png')"/>
+            <mx:Button id="btnRemove" label="Remove" click="onRemove(event)" icon="@Embed('assets/images/delete.png')" enabled="{dgFiles.selectedIndex > -1}"/>
+            <mx:Spacer width="100%"/>
+            <mx:Button id="btnUpload" label="Upload" click="onUpload(event)" icon="@Embed('assets/images/image_add.png')" enabled="{_files.length > 0}"/>
+		</mx:HBox>
+		
+		<mx:DataGrid id="dgFiles" width="100%" height="100%" dataProvider="{_files}" allowMultipleSelection="true">
+			<mx:columns>
+				<mx:DataGridColumn headerText="File Name" dataField="name"/>
+	        	<mx:DataGridColumn headerText="File Type" dataField="type"/>
+             	<mx:DataGridColumn headerText="File Size" dataField="size" labelFunction="bytesToKilobytes"/>
+			</mx:columns>
+		</mx:DataGrid>
+		
+		<mx:ControlBar>
+			<mx:Label id="txtStatus" text="{statusBarText}" width="200"/>
+			<mx:ProgressBar id="uploadProgressBar" width="100%" labelPlacement="center" trackHeight="20" mode="manual" enabled="{_files.length > 0}" label="{progressBarText}" color="#3B6BBF"/>
+		</mx:ControlBar>
+		
+	</mx:Panel>
+</mx:TitleWindow>	
+</textarea>
+
+
+<br/><br/>
+
+<textarea name="code" class="brush: xml as3">
+
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"
+	xmlns:programmatic="themes.Undefined.assets.programmatic.*"
+	preloader="themes.Undefined.assets.programmatic.CustomPreloader"
+	creationComplete="init()">
+	
+	<mx:Style source="themes/Undefined/css/skinPreview.css"/>
+	<mx:Style source="assets/css/stylesheet.css"/>
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.utils.ObjectUtil;
+			import mx.events.TreeEvent;
+			import mx.rpc.events.ResultEvent;
+			import mx.rpc.events.FaultEvent;
+			
+			[Embed(source="themes/Undefined/assets/botones/folder_close.png")]
+			[Bindable] private var folderClosed:Class;
+			[Bindable] private var directories:Array;
+			
+			private var baseDir:String = "C:\\JRun4";
+			private var node:Object;
+			
+			private function init():void {
+				// get the top level directories
+				FileManager.getDirectories(baseDir,true,"MyHome");
+			}
+			
+			private function listDirectories(event:ResultEvent):void {
+			    var dirs:Array = event.result as Array;
+			    // if the _directories array is null this is our root request
+			    if(directories == null) {
+			        directories = dirs;
+			        tree.openItems = directories;
+			    } else {
+			    	node.children = dirs;
+			    }
+			    			    
+			    // clear the node
+			    node = null;
+			    tree.invalidateList();
+			    tree.invalidateDisplayList();
+			}
+			
+			private function onItemOpening(event:TreeEvent):void {
+			    var path:String = event.item.path;
+			    FileManager.getDirectories(path);
+			    node = event.item;
+			    node.children.push({name:"Getting Sub Directories..."});
+			}
+			
+			private function onFault(event:FaultEvent):void {
+				trace(event.fault.message);
+			}
+		]]>
+	</mx:Script>
+	
+	<mx:RemoteObject id="FileManager" destination="ColdFusion" source="rocketfm.src.org.vega.FileManager" showBusyCursor="true">
+        <mx:method name="getDirectories" result="listDirectories(event)" fault="onFault(event)"/>
+    </mx:RemoteObject>
+	
+	<mx:HBox top="20" left="20" right="20" height="25">
+		<mx:Label text="RocketFM" styleName="applicationTitle"/>
+	</mx:HBox>
+	
+	<mx:HDividedBox top="50" left="20" right="20" bottom="50">
+		<mx:Tree id="tree" width="25%" height="100%" dataProvider="{directories}" labelField="name" showRoot="true" 
+				 defaultLeafIcon="{folderClosed}" itemOpening="onItemOpening(event)"/>
+		<mx:DataGrid width="75%" height="100%"/>
+	</mx:HDividedBox>
+	
+	<mx:HBox left="20" right="20" bottom="20" height="25">
+		<mx:Label text="Status text" styleName="statusText"/>
+		<mx:Spacer width="100%"/>
+		<mx:Button label="Delete"/>
+		<mx:Button label="Download"/>
+		<mx:Button label="Upload"/>
+	</mx:HBox>
+	
+</mx:Application>
+</textarea>
+
+
+<textarea name="code" class="brush: groovy">
+import groovy.sql.Sql
+import groovy.xml.MarkupBuilder
+def schema = "PROD"
+def sql = Sql.newInstance("jdbc:oracle:thin:@hostname:1526:${schema}", "scott", "tiger", "oracle.jdbc.driver.OracleDriver")
+
+/* Request */
+def req = """
+SELECT id,  name, givenname, unit FROM ${schema}.people
+WHERE
+in_unit=1
+AND visible=0
+"""
+def out = new File('out.xml')
+def writer = new FileWriter( out )
+def xml = new MarkupBuilder( writer )
+
+xml.agents {
+    sql.eachRow( req as String  ) {
+        /* For each row output detail */
+        row ->
+            xml.agent(id:row.id) {
+                name( row.name )
+                givenname( row.givenname )
+                unit( row.unit )
+                }
+    }
+}
+</textarea>
+
+</html>
